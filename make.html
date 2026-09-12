@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Создать приглашение</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cormorant+Infant:ital,wght@0,400;1,600&family=Marck+Script&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="make-page">
+    <main class="make-card">
+      <p class="kicker">для рассылки гостям</p>
+      <h1>Именная ссылка</h1>
+      <p class="lead">Введите имя — получите ссылку на визитку именно для этого человека. На Netlify ничего отдельно собирать не нужно.</p>
+      <label>
+        Имя гостя
+        <input type="text" id="guest-name" placeholder="Анна или Анна и Пётр" autocomplete="off" />
+      </label>
+      <button type="button" class="btn yes" id="make-link">Создать ссылку</button>
+      <p class="make-result" id="make-result" hidden></p>
+      <p class="tiny"><a href="./">← к приглашению</a></p>
+    </main>
+    <script type="module" src="/src/make.js"></script>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Приглашение</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Caveat:wght@400;600;700&family=Cormorant+Infant:ital,wght@0,400;0,600;1,400;1,600&family=Marck+Script&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <svg class="svg-defs" aria-hidden="true">
+      <defs>
+        <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+          <path d="M0.5,0.93 C0.08,0.62 0.02,0.28 0.26,0.12 C0.38,0.03 0.5,0.16 0.5,0.3 C0.5,0.16 0.62,0.03 0.74,0.12 C0.98,0.28 0.92,0.62 0.5,0.93 Z" />
+        </clipPath>
+        <filter id="wine" color-interpolation-filters="sRGB">
+          <feColorMatrix type="matrix" values="0 0 0 0 0.718  0 0 0 0 0.416  0 0 0 0 0.502  -1.2 -1.2 -1.2 0 1.1"/>
+        </filter>
+        <symbol id="oimo" viewBox="0 0 1024 768">
+          <image href="/oimo-src.jpg" width="1024" height="768" filter="url(#wine)" preserveAspectRatio="xMidYMid meet"/>
+        </symbol>
+        <g id="yurt" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+          <path d="M8 40h32M10 40V28l14-14 14 14v12"/>
+          <path d="M24 14v-4"/>
+          <circle cx="24" cy="8" r="2.2"/>
+          <path d="M18 40v-8h12v8"/>
+        </g>
+        <g id="tulpar" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 34c4-10 10-16 20-16 6 0 10 4 14 2 3-8 8-10 12-8"/>
+          <path d="M28 18c2 8-2 18-8 22M18 40c2-6 8-8 12-4M36 22c2 8 0 14-4 18"/>
+        </g>
+        <g id="moon" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M28 10a14 14 0 1 0 0 24 11 11 0 0 1 0-24z"/>
+        </g>
+        <g id="shyrdak" fill="currentColor">
+          <path d="M24 6l14 18-14 18L10 24 24 6zm0 10L16 24l8 10 8-10-8-8z"/>
+        </g>
+      </defs>
+    </svg>
+
+    <div class="bg-veil" aria-hidden="true"></div>
+    <div class="side-rail left" aria-hidden="true"></div>
+    <div class="side-rail right" aria-hidden="true"></div>
+    <div class="petals" aria-hidden="true"></div>
+
+    <header class="hero pattern-oimo">
+      <svg class="ornament-mark" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+      <p class="eyebrow">приглашение</p>
+      <div class="spark-row" aria-hidden="true">
+        <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#yurt" /></svg>
+        <svg class="mini-orn" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#moon" /></svg>
+        <svg class="mini-orn" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#tulpar" /></svg>
+      </div>
+      <h1 class="hero-title glow-text" data-event>Кыз узатуу</h1>
+      <p class="hero-names"><span data-bride></span></p>
+      <div class="heart-stage">
+        <svg class="heart-wreath top" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
+        <div class="heart-frame">
+          <svg class="heart-outline" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M50 93 C 8 62 2 28 26 12 C 38 3 50 16 50 30 C 50 16 62 3 74 12 C 98 28 92 62 50 93 Z" />
+          </svg>
+          <div class="heart-photo" data-bride-photo></div>
+        </div>
+        <svg class="heart-wreath bottom" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
+      </div>
+      <p class="hero-hint">нажмите на печать — письмо откроется</p>
+    </header>
+
+    <section class="section intro tint-blush pattern-shyrdak">
+      <div class="section-corners" aria-hidden="true">
+        <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="corner bl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="corner br" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+      </div>
+      <svg class="ornament-hero" viewBox="0 0 1024 768" aria-hidden="true">
+        <use href="#oimo" />
+      </svg>
+      <h2 data-hello>Дорогие гости</h2>
+      <p>
+        Приглашаю вас на мой праздник — кыз узатуу. Хочу, чтобы рядом были самые близкие
+        и дорогие мне люди.
+      </p>
+    </section>
+
+    <section class="section calendar-section tint-ivory pattern-terme" id="wedding">
+      <div class="section-corners" aria-hidden="true">
+        <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+      </div>
+      <div class="deco-row" aria-hidden="true">
+        <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#shyrdak" /></svg>
+        <svg class="mini-orn" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#moon" /></svg>
+        <svg class="mini-orn" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#yurt" /></svg>
+      </div>
+      <p class="kicker">главный день</p>
+      <h2>Дата праздника</h2>
+      <div class="calendar-wrap">
+        <svg class="side-deco left mini-orn" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
+        <div class="calendar-card glow-card" data-calendar="wedding"></div>
+        <svg class="side-deco right mini-orn" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
+      </div>
+      <p class="date-numeric" data-wedding-numeric>11.10.2026</p>
+      <div class="cal-photos">
+        <figure class="cal-pic a" data-photo="0"></figure>
+        <figure class="cal-pic b" data-photo="1"></figure>
+        <figure class="cal-pic c" data-photo="2"></figure>
+      </div>
+      <div class="place-card">
+        <svg class="place-ornament" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
+        <div class="meta-row">
+          <span class="icon pin" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#yurt" /></svg>
+          </span>
+          <div>
+            <strong data-venue-title></strong>
+            <p data-venue-address></p>
+            <p>начало в <span data-wedding-time></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section letter-section tint-letter pattern-oimo" id="letter">
+      <div class="section-corners" aria-hidden="true">
+        <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+      </div>
+      <svg class="ornament-hero small" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
+      <p class="kicker">для вас лично</p>
+      <h2>Письмо-приглашение</h2>
+      <p class="lead">Нажмите на печать, чтобы открыть</p>
+      <div class="envelope-scene">
+        <div class="envelope">
+          <div class="envelope-back"></div>
+          <div class="envelope-peek"></div>
+          <div class="envelope-front"></div>
+          <div class="flap"></div>
+          <button type="button" class="seal" aria-label="Открыть письмо">
+            <span>♡</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="letter-overlay" hidden>
+      <article class="paper-sheet">
+        <button type="button" class="letter-close" aria-label="Закрыть письмо">×</button>
+        <svg class="paper-ornament" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
+        <p class="paper-to"></p>
+        <p class="paper-body" data-letter-body></p>
+        <p class="paper-sign">С любовью,<br /><span data-bride></span></p>
+      </article>
+    </div>
+
+    <section class="section venue tint-sand pattern-kosh" id="venue">
+      <div class="section-corners" aria-hidden="true">
+        <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+      </div>
+      <p class="kicker">где встретимся</p>
+      <h2>Место проведения</h2>
+      <div class="venue-card">
+        <div class="venue-meta">
+          <div class="meta-row">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><use href="#yurt" /></svg>
+            </span>
+            <div>
+              <strong data-venue-title></strong>
+              <p data-venue-address></p>
+            </div>
+          </div>
+          <div class="meta-row">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><use href="#moon" /></svg>
+            </span>
+            <div>
+              <strong data-wedding-pretty></strong>
+              <p>начало в <span data-wedding-time></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="map-frame">
+          <iframe title="Карта места проведения" data-map loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section rsvp tint-cream pattern-shyrdak" id="rsvp">
+      <div class="section-corners" aria-hidden="true">
+        <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+        <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+      </div>
+      <svg class="ornament-hero small" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
+      <p class="kicker">очень жду ответ</p>
+      <h2>Прийдёте ли вы?</h2>
+      <p class="lead rsvp-ask"><span data-guest></span>, мне важно знать, увидимся ли мы в этот день.</p>
+      <div class="rsvp-actions">
+        <button type="button" class="btn yes" data-rsvp="yes">Да, буду</button>
+        <button type="button" class="btn no" data-rsvp="no">К сожалению, нет</button>
+      </div>
+      <p class="rsvp-reply" data-rsvp-reply hidden></p>
+    </section>
+
+    <footer class="footer">
+      <svg class="ornament-mark light" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
+      <p>С любовью,</p>
+      <p class="footer-names"><span data-bride></span></p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

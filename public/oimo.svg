@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768">
+  <filter id="wine" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="0 0 0 0 0.718  0 0 0 0 0.416  0 0 0 0 0.502  -1.2 -1.2 -1.2 0 1.1"/>
+  </filter>
+  <image href="./oimo-src.jpg" width="1024" height="768" filter="url(#wine)" preserveAspectRatio="xMidYMid meet"/>
+</svg>
