@@ -40,6 +40,7 @@ export function initPetals() {
         repeat: -1,
         ease: 'none',
         delay: gsap.utils.random(0, 10),
+        force3D: true,
       }),
     );
   }
@@ -135,7 +136,7 @@ function initHeroEntrance() {
   gsap.set(nameChars, { autoAlpha: 0, y: 28, rotateX: 50 });
   gsap.set('.hero-flourish', { autoAlpha: 1 });
   gsap.set('.hero-hint, .hero-next', { autoAlpha: 0, y: 16 });
-  gsap.set('.red-kyz', { scale: 1.1, transformOrigin: '50% 40%' });
+  gsap.set('.red-kyz', { scale: 1.1, transformOrigin: '50% 40%', force3D: true });
   heroEl.classList.add('hero-ready');
   pinHeroScreen();
   window.setTimeout(unlockIntro, 5600);
@@ -145,7 +146,7 @@ function initHeroEntrance() {
     onComplete: unlockIntro,
   });
 
-  tl.to('.red-kyz', { scale: 1, duration: 2.8, ease: 'power2.out' }, 0)
+  tl.to('.red-kyz', { scale: 1, duration: 2.8, ease: 'power2.out', force3D: true }, 0)
     .to('.hero .ornament-mark', { autoAlpha: 1, scale: 1, y: 0, duration: 0.9, ease: 'expo.out' }, 0.12)
     .to(eyebrowChars, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.035, ease: 'power2.out' }, 0.35);
 
@@ -348,7 +349,7 @@ function initLetterScene() {
   gsap.set(titleChars, { autoAlpha: 0, y: 26, rotateX: 50 });
   gsap.set(words, { autoAlpha: 0, y: 14 });
   gsap.set(envelope, { autoAlpha: 0, y: 28, rotateX: 10, transformOrigin: '50% 80%' });
-  if (photo) gsap.set(photo, { scale: 1.06, transformOrigin: '50% 40%' });
+  if (photo) gsap.set(photo, { scale: 1.06, transformOrigin: '50% 40%', force3D: true });
 
   const tl = gsap.timeline({
     defaults: { ease: 'power3.out' },
@@ -363,7 +364,7 @@ function initLetterScene() {
   tl.timeScale(1.2);
 
   tl.add(() => section.classList.add('is-in'));
-  if (photo) tl.to(photo, { scale: 1, duration: 2.2, ease: 'power2.out' }, 0);
+  if (photo) tl.to(photo, { scale: 1, duration: 2.2, ease: 'power2.out', force3D: true }, 0);
   tl.to(ornament, { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: 'expo.out' }, 0.05)
     .to(kickerChars, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.024 }, 0.18)
     .to(titleChars, { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.7, stagger: 0.028, ease: 'expo.out' }, 0.3)

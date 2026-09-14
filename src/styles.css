@@ -1401,13 +1401,7 @@ h2 {
   z-index: 0;
   object-fit: cover;
   opacity: 1;
-  filter: blur(3.5px);
-}
-@media (max-width: 768px) {
-  .red-kyz,
-  .blue-kyz {
-    filter: blur(2.5px);
-  }
+  transform: translateZ(0);
 }
 
 .pattern-oimo > *:not(.red-kyz):not(.blue-kyz) {
