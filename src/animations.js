@@ -19,7 +19,7 @@ export function initPetals() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const kinds = ['petal', 'heart', 'star', 'bow', 'flower'];
-  const count = window.matchMedia('(max-width: 720px)').matches ? 8 : 14;
+  const count = window.matchMedia('(max-width: 720px)').matches ? 5 : 12;
   const tweens = [];
 
   for (let i = 0; i < count; i += 1) {
@@ -51,6 +51,19 @@ export function initPetals() {
       else tween.resume();
     });
   });
+
+  let scrollPause;
+  window.addEventListener(
+    'scroll',
+    () => {
+      tweens.forEach((tween) => tween.pause());
+      window.clearTimeout(scrollPause);
+      scrollPause = window.setTimeout(() => {
+        tweens.forEach((tween) => tween.resume());
+      }, 180);
+    },
+    { passive: true },
+  );
 }
 
 function splitChars(el) {
@@ -132,8 +145,8 @@ function initHeroEntrance() {
   gsap.set('.hero .eyebrow', { autoAlpha: 1 });
   gsap.set(eyebrowChars, { autoAlpha: 0, y: 12 });
   gsap.set('.hero .spark-row .mini-orn', { autoAlpha: 0, scale: 0.7 });
-  gsap.set(titleChars, { autoAlpha: 0, y: 42, rotateX: 65 });
-  gsap.set(nameChars, { autoAlpha: 0, y: 28, rotateX: 50 });
+  gsap.set(titleChars, { autoAlpha: 0, y: 42 });
+  gsap.set(nameChars, { autoAlpha: 0, y: 28 });
   gsap.set('.hero-flourish', { autoAlpha: 1 });
   gsap.set('.hero-hint, .hero-next', { autoAlpha: 0, y: 16 });
   gsap.set('.red-kyz', { scale: 1.1, transformOrigin: '50% 40%', force3D: true });
@@ -165,7 +178,6 @@ function initHeroEntrance() {
   tl.to(titleChars, {
       autoAlpha: 1,
       y: 0,
-      rotateX: 0,
       duration: 0.85,
       stagger: 0.045,
       ease: 'expo.out',
@@ -174,7 +186,6 @@ function initHeroEntrance() {
     .to(nameChars, {
       autoAlpha: 1,
       y: 0,
-      rotateX: 0,
       duration: 0.7,
       stagger: 0.05,
       ease: 'expo.out',
@@ -223,7 +234,7 @@ function initIntroScene() {
   const bow = section.querySelector('.bow');
 
   gsap.set(bow, { autoAlpha: 0, y: -64, rotate: -14, scale: 0.58, transformOrigin: '50% 50%' });
-  gsap.set(titleChars, { autoAlpha: 0, y: 26, rotateX: 55 });
+  gsap.set(titleChars, { autoAlpha: 0, y: 26 });
   gsap.set(words, { autoAlpha: 0, y: 16 });
 
   const tl = gsap.timeline({
@@ -240,7 +251,7 @@ function initIntroScene() {
 
   tl.add(() => section.classList.add('is-in'))
     .to(bow, { autoAlpha: 1, y: 0, rotate: 0, scale: 1, duration: 1.05, ease: 'back.out(1.55)' }, 0.05)
-    .to(titleChars, { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.72, stagger: 0.03, ease: 'expo.out' }, 0.28)
+    .to(titleChars, { autoAlpha: 1, y: 0, duration: 0.72, stagger: 0.03, ease: 'expo.out' }, 0.28)
     .to(flourish, { strokeDashoffset: 0, duration: 0.7, ease: 'power2.inOut' }, '-=0.22')
     .to(words, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.04 }, '-=0.32');
 }
@@ -269,11 +280,11 @@ function initCalendarScene() {
 
   gsap.set(deco, { autoAlpha: 0, y: 14, scale: 0.86 });
   gsap.set(kickerChars, { autoAlpha: 0, y: 10 });
-  gsap.set(titleChars, { autoAlpha: 0, y: 28, rotateX: 50 });
-  gsap.set('.calendar-card', { autoAlpha: 0, y: 40, rotateX: 16, transformOrigin: '50% 80%' });
+  gsap.set(titleChars, { autoAlpha: 0, y: 28 });
+  gsap.set('.calendar-card', { autoAlpha: 0, y: 40, transformOrigin: '50% 80%' });
   gsap.set(sides, { autoAlpha: 0 });
   gsap.set(dows, { autoAlpha: 0, y: 8 });
-  gsap.set(days, { autoAlpha: 0, scale: 0.45 });
+  gsap.set(days, { autoAlpha: 0 });
   gsap.set(dateChars, { autoAlpha: 0, y: 18 });
   gsap.set('.place-card', { autoAlpha: 0, y: 22 });
   photos.forEach((photo, index) => {
@@ -295,12 +306,12 @@ function initCalendarScene() {
   tl.add(() => section.classList.add('is-in'))
     .to(deco, { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.07, ease: 'back.out(1.6)' }, 0.05)
     .to(kickerChars, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.025 }, 0.2)
-    .to(titleChars, { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.7, stagger: 0.032, ease: 'expo.out' }, 0.32)
-    .to('.calendar-card', { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'expo.out' }, 0.55)
+    .to(titleChars, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.032, ease: 'expo.out' }, 0.32)
+    .to('.calendar-card', { autoAlpha: 1, y: 0, duration: 0.9, ease: 'expo.out' }, 0.55)
     .fromTo(sides[0], { autoAlpha: 0, x: -28 }, { autoAlpha: 1, x: 0, duration: 0.7, ease: 'power2.out' }, 0.6)
     .fromTo(sides[1], { autoAlpha: 0, x: 28 }, { autoAlpha: 1, x: 0, duration: 0.7, ease: 'power2.out' }, 0.6)
     .to(dows, { autoAlpha: 1, y: 0, duration: 0.32, stagger: 0.035 }, 0.85)
-    .to(days, { autoAlpha: 1, scale: 1, duration: 0.32, stagger: 0.016, ease: 'back.out(2.2)' }, 1.05)
+    .to(days, { autoAlpha: 1, duration: 0.28, stagger: 0.012, ease: 'power2.out' }, 1.05)
     .to(heart, { strokeDashoffset: 0, duration: 0.85, ease: 'power2.inOut' }, 1.55)
     .to(section.querySelector('.heart-ring path'), { fill: 'rgba(211, 107, 134, 0.22)', duration: 0.35 }, 2.15)
     .fromTo('.cal-day.is-mark', { scale: 1 }, { scale: 1.14, duration: 0.28, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 2.2)
@@ -346,9 +357,9 @@ function initLetterScene() {
 
   gsap.set(ornament, { autoAlpha: 0, y: 16, scale: 0.88, transformOrigin: '50% 50%' });
   gsap.set(kickerChars, { autoAlpha: 0, y: 10 });
-  gsap.set(titleChars, { autoAlpha: 0, y: 26, rotateX: 50 });
+  gsap.set(titleChars, { autoAlpha: 0, y: 26 });
   gsap.set(words, { autoAlpha: 0, y: 14 });
-  gsap.set(envelope, { autoAlpha: 0, y: 28, rotateX: 10, transformOrigin: '50% 80%' });
+  gsap.set(envelope, { autoAlpha: 0, y: 28, transformOrigin: '50% 80%' });
   if (photo) gsap.set(photo, { scale: 1.06, transformOrigin: '50% 40%', force3D: true });
 
   const tl = gsap.timeline({
@@ -367,10 +378,10 @@ function initLetterScene() {
   if (photo) tl.to(photo, { scale: 1, duration: 2.2, ease: 'power2.out', force3D: true }, 0);
   tl.to(ornament, { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: 'expo.out' }, 0.05)
     .to(kickerChars, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.024 }, 0.18)
-    .to(titleChars, { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.7, stagger: 0.028, ease: 'expo.out' }, 0.3)
+    .to(titleChars, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.028, ease: 'expo.out' }, 0.3)
     .to(flourish, { strokeDashoffset: 0, duration: 0.65, ease: 'power2.inOut' }, '-=0.22')
     .to(words, { autoAlpha: 1, y: 0, duration: 0.48, stagger: 0.035 }, '-=0.28')
-    .to(envelope, { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'expo.out' }, '-=0.25');
+    .to(envelope, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'expo.out' }, '-=0.25');
 }
 
 function initVenueScene() {
@@ -389,7 +400,7 @@ function initVenueScene() {
   const map = section.querySelector('.map-frame');
 
   gsap.set(kickerChars, { autoAlpha: 0, y: 10 });
-  gsap.set(titleChars, { autoAlpha: 0, y: 24, rotateX: 45 });
+  gsap.set(titleChars, { autoAlpha: 0, y: 24 });
   gsap.set(meta, { autoAlpha: 0, y: 22 });
   gsap.set(map, { autoAlpha: 0, y: 36, scale: 0.96, transformOrigin: '50% 80%' });
 
@@ -407,7 +418,7 @@ function initVenueScene() {
 
   tl.add(() => section.classList.add('is-in'))
     .to(kickerChars, { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.022 }, 0.04)
-    .to(titleChars, { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.62, stagger: 0.026, ease: 'expo.out' }, 0.12)
+    .to(titleChars, { autoAlpha: 1, y: 0, duration: 0.62, stagger: 0.026, ease: 'expo.out' }, 0.12)
     .to(flourish, { strokeDashoffset: 0, duration: 0.55, ease: 'power2.inOut' }, '-=0.18')
     .to(meta, { autoAlpha: 1, y: 0, duration: 0.55 }, '-=0.22')
     .to(map, { autoAlpha: 1, y: 0, scale: 1, duration: 0.85, ease: 'expo.out' }, '-=0.2');
@@ -472,7 +483,7 @@ function initRsvpScene() {
 
   gsap.set(mark, { autoAlpha: 0, y: 16, scale: 0.88, transformOrigin: '50% 50%' });
   gsap.set(kickerChars, { autoAlpha: 0, y: 10 });
-  gsap.set(titleChars, { autoAlpha: 0, y: 24, rotateX: 45 });
+  gsap.set(titleChars, { autoAlpha: 0, y: 24 });
   gsap.set(words, { autoAlpha: 0, y: 14 });
   gsap.set(buttons, { autoAlpha: 0 });
 
@@ -489,7 +500,7 @@ function initRsvpScene() {
   tl.timeScale(1.18);
   tl.to(mark, { autoAlpha: 1, y: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' }, 0)
     .to(kickerChars, { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.022 }, 0.12)
-    .to(titleChars, { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.62, stagger: 0.026, ease: 'expo.out' }, 0.22)
+    .to(titleChars, { autoAlpha: 1, y: 0, duration: 0.62, stagger: 0.026, ease: 'expo.out' }, 0.22)
     .to(words, { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.03 }, '-=0.28')
     .to(buttons, { autoAlpha: 1, duration: 0.45, stagger: 0.1 }, '-=0.2');
 }

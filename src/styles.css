@@ -218,7 +218,7 @@ h2 {
 }
 
 .pattern-oimo::before {
-  background-image: url("/main-bg.png");
+  background-image: url("/main-bg.webp");
   background-repeat: repeat;
   background-size: 300px auto;
   opacity: 0.07;
@@ -236,19 +236,19 @@ h2 {
 }
 
 .pattern-shyrdak::before {
-  background-image: url("/second-bg.png");
+  background-image: url("/second-bg.webp");
   background-size: 160px auto;
   opacity: 0.1;
 }
 
 .pattern-terme::before {
-  background-image: url("/flower.png");
+  background-image: url("/flower.webp");
   background-size: 650px auto;
   opacity: 0.11;
 }
 
 .pattern-kosh::before {
-  background-image: url("/flowers.png");
+  background-image: url("/flowers.webp");
   background-size: 950px auto;
   opacity: 0.1;
 }
@@ -636,8 +636,10 @@ h2 {
     background: rgba(40, 24, 28, 0.62);
   }
 
-  .seal {
+  .seal::after,
+  .glow-card::after {
     animation: none;
+    opacity: 0;
   }
 
   .rsvp-actions .btn.yes,
@@ -749,6 +751,7 @@ h2 {
 }
 
 .calendar-card {
+  position: relative;
   width: min(360px, 100%);
   background: var(--ivory);
   border: 2px solid var(--line);
@@ -757,21 +760,24 @@ h2 {
   box-shadow: 8px 12px 0 rgba(201, 164, 138, 0.18);
 }
 
-.glow-card {
-  animation: card-glow 3.2s ease-in-out infinite;
+.glow-card::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 36px;
+  pointer-events: none;
+  box-shadow: 0 0 28px rgba(232, 164, 184, 0.5);
+  opacity: 0.35;
+  animation: pulse-soft 3.2s ease-in-out infinite;
 }
 
-@keyframes card-glow {
+@keyframes pulse-soft {
   0%,
   100% {
-    box-shadow:
-      8px 12px 0 rgba(201, 164, 138, 0.18),
-      0 0 0 rgba(232, 164, 184, 0);
+    opacity: 0.25;
   }
   50% {
-    box-shadow:
-      8px 12px 0 rgba(201, 164, 138, 0.18),
-      0 0 28px rgba(232, 164, 184, 0.55);
+    opacity: 0.7;
   }
 }
 
@@ -957,24 +963,18 @@ h2 {
   place-items: center;
   font-size: 1.45rem;
   cursor: pointer;
-  box-shadow:
-    0 6px 0 #8b3a52,
-    0 0 0 0 rgba(229, 122, 144, 0.5);
-  animation: seal-glow 1.8s ease-in-out infinite;
+  box-shadow: 0 6px 0 #8b3a52;
 }
 
-@keyframes seal-glow {
-  0%,
-  100% {
-    box-shadow:
-      0 6px 0 #8b3a52,
-      0 0 0 0 rgba(229, 122, 144, 0.45);
-  }
-  50% {
-    box-shadow:
-      0 6px 0 #8b3a52,
-      0 0 22px 8px rgba(229, 122, 144, 0.55);
-  }
+.seal::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(229, 122, 144, 0.4);
+  opacity: 0.35;
+  animation: pulse-soft 1.8s ease-in-out infinite;
 }
 
 .letter-overlay {
@@ -998,6 +998,19 @@ h2 {
   background: rgba(40, 24, 28, 0.42);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
+}
+
+@media (pointer: coarse) {
+  .letter-overlay.is-on {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(40, 24, 28, 0.55);
+  }
+
+  .glow-text.is-lit,
+  .side-deco {
+    animation: none;
+  }
 }
 
 .letter-overlay[hidden] {
