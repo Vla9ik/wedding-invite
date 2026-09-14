@@ -1,8 +1,27 @@
 import './styles.css';
-import { config } from './config.js';
+import { config, buildVenueMapUrl, venueMapLink } from './config.js';
 import { readGuest } from './guest.js';
 import { numericDate, prettyDate, renderCalendar } from './calendar.js';
 import { initLetter, initPetals, initReveals } from './animations.js';
+
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+if (location.hash) {
+  history.replaceState(null, '', `${location.pathname}${location.search}`);
+}
+
+window.scrollTo(0, 0);
+requestAnimationFrame(() => window.scrollTo(0, 0));
+window.addEventListener('load', () => {
+  if (document.documentElement.classList.contains('is-intro')) {
+    window.scrollTo(0, 0);
+  }
+}, { once: true });
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) window.scrollTo(0, 0);
+});
 
 const guest = readGuest();
 
@@ -42,7 +61,32 @@ document.querySelectorAll('[data-wedding-numeric]').forEach((el) => {
 document.querySelectorAll('[data-wedding-time]').forEach((el) => {
   el.textContent = config.weddingTime;
 });
-document.querySelector('[data-map]').src = config.venue.mapEmbed;
+const yesBtn = document.querySelector('[data-rsvp="yes"]');
+if (yesBtn) yesBtn.textContent = guest.many ? 'Да, будем' : 'Да, буду';
+
+const mapFrame = document.querySelector('[data-map]');
+if (mapFrame) {
+  const loadMap = () => {
+    mapFrame.src = buildVenueMapUrl();
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        loadMap();
+        observer.disconnect();
+      },
+      { rootMargin: '240px' },
+    );
+    observer.observe(mapFrame);
+  } else {
+    loadMap();
+  }
+}
+
+const mapLink = document.querySelector('[data-map-link]');
+if (mapLink) mapLink.href = venueMapLink();
 
 renderCalendar(document.querySelector('[data-calendar="wedding"]'), config.weddingDate);
 
@@ -65,17 +109,6 @@ document.querySelectorAll('[data-photo]').forEach((figure) => {
     figure.style.backgroundImage = `url(${src})`;
   };
   img.src = src;
-});
-
-const reply = document.querySelector('[data-rsvp-reply]');
-const yesText = 'Ура! Уже жду вас и берегу самое тёплое место.';
-const noText = 'Очень жаль... буду скучать, но люблю вас так же сильно.';
-
-document.querySelectorAll('[data-rsvp]').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    reply.hidden = false;
-    reply.textContent = btn.dataset.rsvp === 'yes' ? yesText : noText;
-  });
 });
 
 initPetals();

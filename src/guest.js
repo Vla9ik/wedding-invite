@@ -6,6 +6,7 @@ export function readGuest() {
   if (!name) {
     return {
       name: '',
+      many: true,
       greeting: 'Дорогие гости',
       ask: 'Дорогие гости',
       hello: 'Дорогие гости',
@@ -15,6 +16,7 @@ export function readGuest() {
   const many = / и | & |,/i.test(name);
   return {
     name,
+    many,
     greeting: many ? `Дорогие ${name}` : name,
     ask: name,
     hello: many ? `Дорогие ${name}` : name,
@@ -22,10 +24,7 @@ export function readGuest() {
 }
 
 export function inviteUrl(name) {
-  const path = window.location.pathname
-    .replace(/make\.html$/, '')
-    .replace(/index\.html$/, '');
-  const url = new URL(path || '/', window.location.origin);
+  const url = new URL('/', window.location.origin);
   url.searchParams.set('to', name.trim());
   return url.href;
 }

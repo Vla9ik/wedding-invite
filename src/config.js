@@ -9,11 +9,17 @@ export const config = {
   venue: {
     title: 'Ресторан «Санжыра»',
     address: 'проспект Тумонбая Байзакова, 1/22',
-    mapEmbed:
-      'https://yandex.ru/map-widget/v1/?ll=74.6030%2C42.8746&z=16&l=map&text=%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%A2%D1%83%D0%BC%D0%BE%D0%BD%D0%B1%D0%B0%D1%8F%20%D0%91%D0%B0%D0%B9%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2%D0%B0%201%2F22',
+    map: {
+      lat: 40.924506,
+      lon: 73.015169,
+      zoom: 18,
+      zoomMobile: 18,
+      org: '70000001104293255',
+      city: 'dzhalal-abad',
+    },
   },
   letter: {
-    body: 'Приглашаю тебя разделить со мной этот тёплый день: с объятиями, танцами и той самой лёгкой радостью, от которой хочется улыбаться без причины. Приходи такой, какой ты есть — мне важно просто быть рядом.',
+    body: 'Приглашаю вас разделить со мной этот тёплый день: с объятиями, танцами и той самой лёгкой радостью, от которой хочется улыбаться без причины. Приходите такими, какие вы есть — мне важно просто быть рядом.',
   },
   photos: [
     { src: '/photos/child-1.png' },
@@ -21,3 +27,24 @@ export const config = {
     { src: '/photos/child-3.png' },
   ],
 };
+
+export function buildVenueMapUrl() {
+  const { lat, lon, zoom, zoomMobile, org, city } = config.venue.map;
+  const mobile = window.matchMedia('(max-width: 480px)').matches;
+  const options = {
+    pos: {
+      lat: lat - (mobile ? 0.00055 : 0.0004),
+      lon,
+      zoom: mobile ? zoomMobile : zoom,
+    },
+    opt: { city },
+    org,
+  };
+
+  return `https://widgets.2gis.com/widget?type=firmsonmap&options=${encodeURIComponent(JSON.stringify(options))}`;
+}
+
+export function venueMapLink() {
+  const { lat, lon, org, city } = config.venue.map;
+  return `https://2gis.ru/${city}/firm/${org}/center/${lon},${lat}/zoom/18`;
+}

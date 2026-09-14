@@ -2,14 +2,18 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Приглашение</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Caveat:wght@400;600;700&family=Cormorant+Infant:ital,wght@0,400;0,600;1,400;1,600&family=Marck+Script&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Cormorant+Infant:ital,wght@0,400;0,600;1,400&family=Marck+Script&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="/red-kyz.png" fetchpriority="high" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>
     <svg class="svg-defs" aria-hidden="true">
@@ -36,6 +40,10 @@
         <g id="moon" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M28 10a14 14 0 1 0 0 24 11 11 0 0 1 0-24z"/>
         </g>
+        <g id="pin" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+          <path d="M24 6c-6.6 0-12 5-12 11.2 0 8.4 12 20.8 12 20.8s12-12.4 12-20.8C36 11 30.6 6 24 6z"/>
+          <circle cx="24" cy="17" r="4"/>
+        </g>
         <g id="shyrdak" fill="currentColor">
           <path d="M24 6l14 18-14 18L10 24 24 6zm0 10L16 24l8 10 8-10-8-8z"/>
         </g>
@@ -48,52 +56,71 @@
     <div class="petals" aria-hidden="true"></div>
 
     <header class="hero pattern-oimo">
+      <img src="/red-kyz.png" alt="" class="red-kyz" fetchpriority="high" decoding="async">
       <svg class="ornament-mark" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
       <p class="eyebrow">приглашение</p>
       <div class="spark-row" aria-hidden="true">
-        <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#yurt" /></svg>
+        <svg class="nomad-icon hero-draw" viewBox="0 0 48 48">
+          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+            <path d="M8 40h32M10 40V28l14-14 14 14v12" />
+            <path d="M24 14v-4" />
+            <circle cx="24" cy="8" r="2.2" />
+            <path d="M18 40v-8h12v8" />
+          </g>
+        </svg>
         <svg class="mini-orn" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
-        <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#moon" /></svg>
+        <svg class="nomad-icon hero-draw" viewBox="0 0 48 48">
+          <path fill="none" stroke="currentColor" stroke-width="2.2" d="M28 10a14 14 0 1 0 0 24 11 11 0 0 1 0-24z" />
+        </svg>
         <svg class="mini-orn" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
-        <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#tulpar" /></svg>
+        <svg class="nomad-icon hero-draw" viewBox="0 0 48 48">
+          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 34c4-10 10-16 20-16 6 0 10 4 14 2 3-8 8-10 12-8" />
+            <path d="M28 18c2 8-2 18-8 22M18 40c2-6 8-8 12-4M36 22c2 8 0 14-4 18" />
+          </g>
+        </svg>
       </div>
-      <h1 class="hero-title glow-text" data-event>Кыз узатуу</h1>
+      <div class="hero-heading">
+        <h1 class="hero-title glow-text" data-event>Кыз узатуу</h1>
+        <svg class="hero-flourish" viewBox="0 0 220 18" fill="none" aria-hidden="true">
+          <path d="M10 11C42 3 78 16 110 8c36-8 68 9 100 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+      </div>
       <p class="hero-names"><span data-bride></span></p>
-      <div class="heart-stage">
-        <svg class="heart-wreath top" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
-        <div class="heart-frame">
-          <svg class="heart-outline" viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M50 93 C 8 62 2 28 26 12 C 38 3 50 16 50 30 C 50 16 62 3 74 12 C 98 28 92 62 50 93 Z" />
-          </svg>
-          <div class="heart-photo" data-bride-photo></div>
-        </div>
-        <svg class="heart-wreath bottom" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
-      </div>
-      <p class="hero-hint">нажмите на печать — письмо откроется</p>
+      
+      <p class="hero-hint">листайте дальше — там приглашение</p>
+      <button type="button" class="hero-next" aria-label="Перейти к приглашению">
+        <span class="hero-chevrons" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
     </header>
 
-    <section class="section intro tint-blush pattern-shyrdak">
-      <div class="section-corners" aria-hidden="true">
+    <section class="section intro tint-blush pattern-shyrdak" id="intro">
+      <!-- <div class="section-corners" aria-hidden="true">
         <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
         <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
         <svg class="corner bl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
         <svg class="corner br" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
-      </div>
-      <svg class="ornament-hero" viewBox="0 0 1024 768" aria-hidden="true">
-        <use href="#oimo" />
-      </svg>
+      </div> -->
+      <img class="bow" src="/bow-3.png" alt="" loading="lazy" decoding="async">
       <h2 data-hello>Дорогие гости</h2>
-      <p>
+      <svg class="intro-flourish" viewBox="0 0 220 18" fill="none" aria-hidden="true">
+        <path d="M10 11C42 3 78 16 110 8c36-8 68 9 100 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+      </svg>
+      <p class="intro-lead">
         Приглашаю вас на мой праздник — кыз узатуу. Хочу, чтобы рядом были самые близкие
         и дорогие мне люди.
       </p>
     </section>
 
     <section class="section calendar-section tint-ivory pattern-terme" id="wedding">
-      <div class="section-corners" aria-hidden="true">
+      <!-- <div class="section-corners" aria-hidden="true">
         <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
         <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
-      </div>
+      </div> -->
       <div class="deco-row" aria-hidden="true">
         <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#shyrdak" /></svg>
         <svg class="mini-orn" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
@@ -108,35 +135,48 @@
         <div class="calendar-card glow-card" data-calendar="wedding"></div>
         <svg class="side-deco right mini-orn" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
       </div>
-      <p class="date-numeric" data-wedding-numeric>11.10.2026</p>
-      <div class="cal-photos">
-        <figure class="cal-pic a" data-photo="0"></figure>
-        <figure class="cal-pic b" data-photo="1"></figure>
-        <figure class="cal-pic c" data-photo="2"></figure>
+      <div class="date-heading">
+        <p class="date-numeric" data-wedding-numeric>11.10.2026</p>
+        <svg class="date-flourish" viewBox="0 0 220 18" fill="none" aria-hidden="true">
+          <path d="M10 11C42 3 78 16 110 8c36-8 68 9 100 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
       </div>
       <div class="place-card">
-        <svg class="place-ornament" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
         <div class="meta-row">
           <span class="icon pin" aria-hidden="true">
-            <svg viewBox="0 0 48 48"><use href="#yurt" /></svg>
+            <svg class="place-pin" viewBox="0 0 48 48">
+              <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+                <path d="M24 6c-6.6 0-12 5-12 11.2 0 8.4 12 20.8 12 20.8s12-12.4 12-20.8C36 11 30.6 6 24 6z" />
+                <circle cx="24" cy="17" r="4" />
+              </g>
+            </svg>
           </span>
           <div>
             <strong data-venue-title></strong>
-            <p data-venue-address></p>
             <p>начало в <span data-wedding-time></span></p>
           </div>
         </div>
       </div>
+      <!-- photo child -->
+       <div class="photo-child">
+          <img src="/photos/devochka-chb-korona.png" alt="" loading="lazy" decoding="async">
+          <img src="/photos/devochka-krupnyi-korona.png" alt="" loading="lazy" decoding="async">
+          <img src="/photos/devochka-shapka-korona.png" alt="" loading="lazy" decoding="async">
+       </div>
     </section>
 
     <section class="section letter-section tint-letter pattern-oimo" id="letter">
-      <div class="section-corners" aria-hidden="true">
+      <!-- <div class="section-corners" aria-hidden="true">
         <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
         <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
-      </div>
+      </div> -->
+      <img src="/blue-chapan.png" alt="" class="blue-kyz" loading="lazy" decoding="async">
       <svg class="ornament-hero small" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
       <p class="kicker">для вас лично</p>
       <h2>Письмо-приглашение</h2>
+      <svg class="letter-flourish" viewBox="0 0 220 18" fill="none" aria-hidden="true">
+        <path d="M10 11C42 3 78 16 110 8c36-8 68 9 100 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+      </svg>
       <p class="lead">Нажмите на печать, чтобы открыть</p>
       <div class="envelope-scene">
         <div class="envelope">
@@ -154,7 +194,6 @@
     <div class="letter-overlay" hidden>
       <article class="paper-sheet">
         <button type="button" class="letter-close" aria-label="Закрыть письмо">×</button>
-        <svg class="paper-ornament" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
         <p class="paper-to"></p>
         <p class="paper-body" data-letter-body></p>
         <p class="paper-sign">С любовью,<br /><span data-bride></span></p>
@@ -162,12 +201,15 @@
     </div>
 
     <section class="section venue tint-sand pattern-kosh" id="venue">
-      <div class="section-corners" aria-hidden="true">
+      <!-- <div class="section-corners" aria-hidden="true">
         <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
         <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
-      </div>
+      </div> -->
       <p class="kicker">где встретимся</p>
       <h2>Место проведения</h2>
+      <svg class="venue-flourish" viewBox="0 0 220 18" fill="none" aria-hidden="true">
+        <path d="M10 11C42 3 78 16 110 8c36-8 68 9 100 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+      </svg>
       <div class="venue-card">
         <div class="venue-meta">
           <div class="meta-row">
@@ -190,17 +232,23 @@
           </div>
         </div>
         <div class="map-frame">
-          <iframe title="Карта места проведения" data-map loading="lazy"></iframe>
+          <iframe title="Карта места проведения" data-map loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="map-open" data-map-link href="https://2gis.ru" target="_blank" rel="noopener noreferrer">Открыть в 2ГИС</a>
         </div>
       </div>
     </section>
 
     <section class="section rsvp tint-cream pattern-shyrdak" id="rsvp">
-      <div class="section-corners" aria-hidden="true">
+      <!-- <div class="section-corners" aria-hidden="true">
         <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
         <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
-      </div>
-      <svg class="ornament-hero small" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
+      </div> -->
+      <svg class="rsvp-mark" viewBox="0 0 72 56" aria-hidden="true">
+        <rect x="7" y="11" width="58" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="1.7" />
+        <path d="M7 14.5 36 34 65 14.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+        <circle cx="36" cy="30" r="9" fill="#fff8f4" />
+        <path d="M36 35.2c-3.4-2.5-5.8-4.6-5.8-6.8A3.4 3.4 0 0136 24.8 3.4 3.4 0 0141.8 28.4c0 2.2-2.4 4.3-5.8 6.8z" fill="currentColor" />
+      </svg>
       <p class="kicker">очень жду ответ</p>
       <h2>Прийдёте ли вы?</h2>
       <p class="lead rsvp-ask"><span data-guest></span>, мне важно знать, увидимся ли мы в этот день.</p>
@@ -208,8 +256,15 @@
         <button type="button" class="btn yes" data-rsvp="yes">Да, буду</button>
         <button type="button" class="btn no" data-rsvp="no">К сожалению, нет</button>
       </div>
-      <p class="rsvp-reply" data-rsvp-reply hidden></p>
     </section>
+
+    <div class="rsvp-toast" hidden>
+      <div class="rsvp-toast-card">
+        <p class="rsvp-toast-title"></p>
+        <p class="rsvp-toast-text"></p>
+        <button type="button" class="btn yes rsvp-toast-close">Хорошо</button>
+      </div>
+    </div>
 
     <footer class="footer">
       <svg class="ornament-mark light" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
