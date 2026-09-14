@@ -19,7 +19,7 @@ export function initPetals() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const kinds = ['petal', 'heart', 'star', 'bow', 'flower'];
-  const count = window.matchMedia('(max-width: 720px)').matches ? 5 : 12;
+  const count = window.matchMedia('(max-width: 720px)').matches ? 8 : 12;
   const tweens = [];
 
   for (let i = 0; i < count; i += 1) {
@@ -51,19 +51,6 @@ export function initPetals() {
       else tween.resume();
     });
   });
-
-  let scrollPause;
-  window.addEventListener(
-    'scroll',
-    () => {
-      tweens.forEach((tween) => tween.pause());
-      window.clearTimeout(scrollPause);
-      scrollPause = window.setTimeout(() => {
-        tweens.forEach((tween) => tween.resume());
-      }, 180);
-    },
-    { passive: true },
-  );
 }
 
 function splitChars(el) {
