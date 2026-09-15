@@ -28,6 +28,11 @@ html.is-intro {
   overflow: hidden;
 }
 
+html.is-intro .scroll-fabs {
+  opacity: 0;
+  pointer-events: none;
+}
+
 body {
   font-family: var(--serif);
   color: var(--ink);
@@ -1483,6 +1488,7 @@ h2 {
   display: flex;
   gap: 0.7rem;
   transform: translateX(-50%);
+  transition: opacity 0.4s ease;
 }
 
 .scroll-fab {

@@ -123,6 +123,11 @@ function initScrollFabs() {
 
   const ids = ['hero', 'intro', 'wedding', 'letter', 'venue', 'rsvp'];
   const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+  const edge = 56;
+
+  function step() {
+    return Math.round(window.innerHeight * 0.78);
+  }
 
   function currentIndex() {
     const mid = window.innerHeight * 0.42;
@@ -133,6 +138,14 @@ function initScrollFabs() {
     return index;
   }
 
+  function atTop() {
+    return window.scrollY <= 8;
+  }
+
+  function atBottom() {
+    return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - edge;
+  }
+
   function go(section) {
     if (!section) return;
     document.documentElement.classList.remove('is-intro');
@@ -140,13 +153,47 @@ function initScrollFabs() {
   }
 
   function sync() {
-    const index = currentIndex();
-    upBtn.hidden = index <= 0;
-    downBtn.hidden = index >= sections.length - 1;
+    upBtn.hidden = atTop();
+    downBtn.hidden = atBottom();
   }
 
-  upBtn.addEventListener('click', () => go(sections[currentIndex() - 1]));
-  downBtn.addEventListener('click', () => go(sections[currentIndex() + 1]));
+  downBtn.addEventListener('click', () => {
+    document.documentElement.classList.remove('is-intro');
+    const index = currentIndex();
+    const section = sections[index];
+    const leftover = section ? section.getBoundingClientRect().bottom - window.innerHeight : 0;
+
+    if (leftover > edge) {
+      window.scrollBy({ top: Math.min(leftover, step()), behavior: 'smooth' });
+      return;
+    }
+
+    if (sections[index + 1]) {
+      go(sections[index + 1]);
+      return;
+    }
+
+    window.scrollBy({ top: step(), behavior: 'smooth' });
+  });
+
+  upBtn.addEventListener('click', () => {
+    const index = currentIndex();
+    const section = sections[index];
+    const leftover = section ? -section.getBoundingClientRect().top : 0;
+
+    if (leftover > edge) {
+      window.scrollBy({ top: -Math.min(leftover, step()), behavior: 'smooth' });
+      return;
+    }
+
+    if (sections[index - 1]) {
+      go(sections[index - 1]);
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   window.addEventListener('scroll', sync, { passive: true });
   sync();
 }
