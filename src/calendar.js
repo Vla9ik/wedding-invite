@@ -13,7 +13,7 @@ const MONTHS = [
   'декабрь',
 ];
 
-const DOW = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+const DOW = ['дш', 'шш', 'шр', 'бш', 'жм', 'иш', 'жк'];
 
 function mondayIndex(jsDay) {
   return (jsDay + 6) % 7;
@@ -21,7 +21,7 @@ function mondayIndex(jsDay) {
 
 export function prettyDate(iso) {
   const date = new Date(`${iso}T12:00:00`);
-  return `${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+  return `${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}-жыл`;
 }
 
 export function numericDate(iso) {
@@ -54,7 +54,7 @@ export function renderCalendar(root, iso) {
   }
 
   root.innerHTML = `
-    <p class="cal-month">${MONTHS[month]} ${year}</p>
+    <p class="cal-month">${MONTHS[month]} ${year}-жыл</p>
     <div class="cal-grid">
       ${DOW.map((d) => `<span class="cal-dow">${d}</span>`).join('')}
       ${cells.join('')}

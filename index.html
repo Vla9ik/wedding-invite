@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ky">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Приглашение</title>
+    <title>Чакыруу</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -55,10 +55,37 @@
     <div class="side-rail right" aria-hidden="true"></div>
     <div class="petals" aria-hidden="true"></div>
 
-    <header class="hero pattern-oimo">
+    <nav class="site-nav" aria-label="Бөлүмдөр">
+      <button type="button" class="site-nav-item is-active" data-jump="hero">
+        <span class="site-nav-dot"></span>
+        <span class="site-nav-label">Башы</span>
+      </button>
+      <button type="button" class="site-nav-item" data-jump="intro">
+        <span class="site-nav-dot"></span>
+        <span class="site-nav-label">Чакыруу</span>
+      </button>
+      <button type="button" class="site-nav-item" data-jump="wedding">
+        <span class="site-nav-dot"></span>
+        <span class="site-nav-label">Күнү</span>
+      </button>
+      <button type="button" class="site-nav-item" data-jump="letter">
+        <span class="site-nav-dot"></span>
+        <span class="site-nav-label">Кат</span>
+      </button>
+      <button type="button" class="site-nav-item" data-jump="venue">
+        <span class="site-nav-dot"></span>
+        <span class="site-nav-label">Жер</span>
+      </button>
+      <button type="button" class="site-nav-item" data-jump="rsvp">
+        <span class="site-nav-dot"></span>
+        <span class="site-nav-label">Жооп</span>
+      </button>
+    </nav>
+
+    <header class="hero pattern-oimo" id="hero">
       <img src="/red-kyz-bg.webp" alt="" class="red-kyz" fetchpriority="high" decoding="async">
       <svg class="ornament-mark" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
-      <p class="eyebrow">приглашение</p>
+      <p class="eyebrow">чакыруу</p>
       <div class="spark-row" aria-hidden="true">
         <svg class="nomad-icon hero-draw" viewBox="0 0 48 48">
           <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
@@ -88,8 +115,8 @@
       </div>
       <p class="hero-names"><span data-bride></span></p>
       
-      <p class="hero-hint">листайте дальше — там приглашение</p>
-      <button type="button" class="hero-next" aria-label="Перейти к приглашению">
+      <p class="hero-hint">ылдый жылдырыңыз — чакыруу ошол жакта</p>
+      <button type="button" class="hero-next" aria-label="Чакырууга өтүү">
         <span class="hero-chevrons" aria-hidden="true">
           <span></span>
           <span></span>
@@ -106,13 +133,13 @@
         <svg class="corner br" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
       </div> -->
       <img class="bow" src="/bow-3.webp" alt="" loading="lazy" decoding="async">
-      <h2 data-hello>Дорогие гости</h2>
+      <h2 data-hello>Урматтуу коноктор</h2>
       <svg class="intro-flourish" viewBox="0 0 220 18" fill="none" aria-hidden="true">
         <path d="M10 11C42 3 78 16 110 8c36-8 68 9 100 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
       </svg>
       <p class="intro-lead">
-        Приглашаю вас на мой праздник — кыз узатуу. Хочу, чтобы рядом были самые близкие
-        и дорогие мне люди.
+        Сиздерди кыз узатуу майрамыма чакырам. Жаныма эң жакын
+        жана кымбат адамдар болсо деп тилейм.
       </p>
     </section>
 
@@ -128,8 +155,8 @@
         <svg class="mini-orn" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
         <svg class="nomad-icon" viewBox="0 0 48 48"><use href="#yurt" /></svg>
       </div>
-      <p class="kicker">главный день</p>
-      <h2>Дата праздника</h2>
+      <p class="kicker">негизги күн</p>
+      <h2>Майрамдын күнү</h2>
       <div class="calendar-wrap">
         <svg class="side-deco left mini-orn" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
         <div class="calendar-card glow-card" data-calendar="wedding"></div>
@@ -153,7 +180,7 @@
           </span>
           <div>
             <strong data-venue-title></strong>
-            <p>начало в <span data-wedding-time></span></p>
+            <p>башталышы <span data-wedding-time></span></p>
           </div>
         </div>
       </div>
@@ -172,19 +199,19 @@
       </div> -->
       <img src="/blue-kyz-bg.webp" alt="" class="blue-kyz" loading="lazy" decoding="async">
       <svg class="ornament-hero small" viewBox="0 0 1024 768" aria-hidden="true"><use href="#oimo" /></svg>
-      <p class="kicker">для вас лично</p>
-      <h2>Письмо-приглашение</h2>
+      <p class="kicker">сизге өзүнчө</p>
+      <h2>Чакыруу каты</h2>
       <svg class="letter-flourish" viewBox="0 0 220 18" fill="none" aria-hidden="true">
         <path d="M10 11C42 3 78 16 110 8c36-8 68 9 100 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
       </svg>
-      <p class="lead">Нажмите на печать, чтобы открыть</p>
+      <p class="lead">Ачуу үчүн мөөрдү басыңыз</p>
       <div class="envelope-scene">
         <div class="envelope">
           <div class="envelope-back"></div>
           <div class="envelope-peek"></div>
           <div class="envelope-front"></div>
           <div class="flap"></div>
-          <button type="button" class="seal" aria-label="Открыть письмо">
+          <button type="button" class="seal" aria-label="Катты ачуу">
             <span>♡</span>
           </button>
         </div>
@@ -193,10 +220,10 @@
 
     <div class="letter-overlay" hidden>
       <article class="paper-sheet">
-        <button type="button" class="letter-close" aria-label="Закрыть письмо">×</button>
+        <button type="button" class="letter-close" aria-label="Катты жабуу">×</button>
         <p class="paper-to"></p>
         <p class="paper-body" data-letter-body></p>
-        <p class="paper-sign">С любовью,<br /><span data-bride></span></p>
+        <p class="paper-sign">Сүйүү менен,<br /><span data-bride></span></p>
       </article>
     </div>
 
@@ -205,8 +232,8 @@
         <svg class="corner tl" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
         <svg class="corner tr" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
       </div> -->
-      <p class="kicker">где встретимся</p>
-      <h2>Место проведения</h2>
+      <p class="kicker">кайда жолугабыз</p>
+      <h2>Өтө турган жер</h2>
       <svg class="venue-flourish" viewBox="0 0 220 18" fill="none" aria-hidden="true">
         <path d="M10 11C42 3 78 16 110 8c36-8 68 9 100 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
       </svg>
@@ -227,13 +254,13 @@
             </span>
             <div>
               <strong data-wedding-pretty></strong>
-              <p>начало в <span data-wedding-time></span></p>
+              <p>башталышы <span data-wedding-time></span></p>
             </div>
           </div>
         </div>
         <div class="map-frame">
-          <iframe title="Карта места проведения" data-map loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <a class="map-open" data-map-link href="https://2gis.ru" target="_blank" rel="noopener noreferrer">Открыть в 2ГИС</a>
+          <iframe title="Өтө турган жердин картасы" data-map loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="map-open" data-map-link href="https://2gis.ru" target="_blank" rel="noopener noreferrer">2ГИС'те ачуу</a>
         </div>
       </div>
     </section>
@@ -249,12 +276,12 @@
         <circle cx="36" cy="30" r="9" fill="#fff8f4" />
         <path d="M36 35.2c-3.4-2.5-5.8-4.6-5.8-6.8A3.4 3.4 0 0136 24.8 3.4 3.4 0 0141.8 28.4c0 2.2-2.4 4.3-5.8 6.8z" fill="currentColor" />
       </svg>
-      <p class="kicker">очень жду ответ</p>
-      <h2>Прийдёте ли вы?</h2>
-      <p class="lead rsvp-ask"><span data-guest></span>, мне важно знать, увидимся ли мы в этот день.</p>
+      <p class="kicker">жоопту күтөм</p>
+      <h2>Келесизби?</h2>
+      <p class="lead rsvp-ask"><span data-guest></span>, бул күнү жолугабызбы — билишим керек.</p>
       <div class="rsvp-actions">
-        <button type="button" class="btn yes" data-rsvp="yes">Да, буду</button>
-        <button type="button" class="btn no" data-rsvp="no">К сожалению, нет</button>
+        <button type="button" class="btn yes" data-rsvp="yes">Ооба, барамын</button>
+        <button type="button" class="btn no" data-rsvp="no">Тилекке каршы, жок</button>
       </div>
     </section>
 
@@ -262,13 +289,13 @@
       <div class="rsvp-toast-card">
         <p class="rsvp-toast-title"></p>
         <p class="rsvp-toast-text"></p>
-        <button type="button" class="btn yes rsvp-toast-close">Хорошо</button>
+        <button type="button" class="btn yes rsvp-toast-close">Жакшы</button>
       </div>
     </div>
 
     <footer class="footer">
       <svg class="ornament-mark light" viewBox="0 0 1024 768"><use href="#oimo" /></svg>
-      <p>С любовью,</p>
+      <p>Сүйүү менен,</p>
       <p class="footer-names"><span data-bride></span></p>
     </footer>
 

@@ -62,7 +62,7 @@ document.querySelectorAll('[data-wedding-time]').forEach((el) => {
   el.textContent = config.weddingTime;
 });
 const yesBtn = document.querySelector('[data-rsvp="yes"]');
-if (yesBtn) yesBtn.textContent = guest.many ? 'Да, будем' : 'Да, буду';
+if (yesBtn) yesBtn.textContent = guest.many ? 'Ооба, барабыз' : 'Ооба, барамын';
 
 const mapFrame = document.querySelector('[data-map]');
 if (mapFrame) {
@@ -114,3 +114,44 @@ document.querySelectorAll('[data-photo]').forEach((figure) => {
 initPetals();
 initReveals();
 initLetter();
+initSiteNav();
+
+function initSiteNav() {
+  const nav = document.querySelector('.site-nav');
+  if (!nav) return;
+
+  const items = [...nav.querySelectorAll('[data-jump]')];
+  const sections = items
+    .map((item) => document.getElementById(item.dataset.jump))
+    .filter(Boolean);
+
+  function setActive(id) {
+    items.forEach((item) => {
+      item.classList.toggle('is-active', item.dataset.jump === id);
+    });
+  }
+
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      const target = document.getElementById(item.dataset.jump);
+      if (!target) return;
+      document.documentElement.classList.remove('is-intro');
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActive(item.dataset.jump);
+    });
+  });
+
+  if (!('IntersectionObserver' in window) || !sections.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target?.id) setActive(visible.target.id);
+    },
+    { rootMargin: '-35% 0px -45% 0px', threshold: [0.15, 0.35, 0.6] },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
