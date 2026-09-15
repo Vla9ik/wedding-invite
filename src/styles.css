@@ -1475,84 +1475,58 @@ h2 {
   }
 }
 
-.site-nav {
+.scroll-fabs {
   position: fixed;
-  top: 50%;
-  right: 0.55rem;
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom));
   z-index: 20;
   display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  transform: translateY(-50%);
-  pointer-events: none;
+  gap: 0.7rem;
+  transform: translateX(-50%);
 }
 
-.site-nav-item {
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.45rem;
-  padding: 0.2rem 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  color: var(--wine);
-  font: inherit;
-}
-
-.site-nav-dot {
-  width: 11px;
-  height: 11px;
-  flex: none;
+.scroll-fab {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
   border: 1.5px solid var(--wine);
   border-radius: 50%;
-  background: rgba(255, 250, 244, 0.85);
-  box-shadow: 0 0 0 3px rgba(255, 250, 244, 0.35);
+  background: rgba(255, 250, 244, 0.94);
+  color: var(--wine);
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(92, 61, 66, 0.16);
 }
 
-.site-nav-item.is-active .site-nav-dot {
-  background: var(--wine);
-  transform: scale(1.2);
+.scroll-fab[hidden] {
+  display: none;
 }
 
-.site-nav-label {
-  font-family: var(--hand);
-  font-size: 1.05rem;
-  line-height: 1;
-  opacity: 0;
-  transform: translateX(6px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  background: rgba(255, 250, 244, 0.92);
-  padding: 0.2rem 0.45rem;
-  border-radius: 999px;
-  white-space: nowrap;
+.scroll-fab span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-right: 2.5px solid currentColor;
+  border-bottom: 2.5px solid currentColor;
 }
 
-.site-nav-item.is-active .site-nav-label,
-.site-nav-item:hover .site-nav-label,
-.site-nav-item:focus-visible .site-nav-label {
-  opacity: 1;
-  transform: translateX(0);
+.scroll-fab.down span {
+  margin-top: -6px;
+  transform: rotate(45deg);
+}
+
+.scroll-fab.up span {
+  margin-bottom: -6px;
+  transform: rotate(-135deg);
+}
+
+body.letter-open .scroll-fabs {
+  display: none;
 }
 
 @media (pointer: coarse) {
-  .site-nav {
-    right: 0.35rem;
-    gap: 0.7rem;
-  }
-
-  .site-nav-item {
-    min-height: 32px;
-  }
-
-  .site-nav-dot {
-    width: 13px;
-    height: 13px;
-  }
-
-  .site-nav-item.is-active .site-nav-label {
-    opacity: 1;
-    transform: none;
+  .scroll-fab {
+    width: 56px;
+    height: 56px;
   }
 }

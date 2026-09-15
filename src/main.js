@@ -114,44 +114,39 @@ document.querySelectorAll('[data-photo]').forEach((figure) => {
 initPetals();
 initReveals();
 initLetter();
-initSiteNav();
+initScrollFabs();
 
-function initSiteNav() {
-  const nav = document.querySelector('.site-nav');
-  if (!nav) return;
+function initScrollFabs() {
+  const upBtn = document.querySelector('[data-scroll="up"]');
+  const downBtn = document.querySelector('[data-scroll="down"]');
+  if (!upBtn || !downBtn) return;
 
-  const items = [...nav.querySelectorAll('[data-jump]')];
-  const sections = items
-    .map((item) => document.getElementById(item.dataset.jump))
-    .filter(Boolean);
+  const ids = ['hero', 'intro', 'wedding', 'letter', 'venue', 'rsvp'];
+  const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
 
-  function setActive(id) {
-    items.forEach((item) => {
-      item.classList.toggle('is-active', item.dataset.jump === id);
+  function currentIndex() {
+    const mid = window.innerHeight * 0.42;
+    let index = 0;
+    sections.forEach((section, i) => {
+      if (section.getBoundingClientRect().top <= mid) index = i;
     });
+    return index;
   }
 
-  items.forEach((item) => {
-    item.addEventListener('click', () => {
-      const target = document.getElementById(item.dataset.jump);
-      if (!target) return;
-      document.documentElement.classList.remove('is-intro');
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setActive(item.dataset.jump);
-    });
-  });
+  function go(section) {
+    if (!section) return;
+    document.documentElement.classList.remove('is-intro');
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-  if (!('IntersectionObserver' in window) || !sections.length) return;
+  function sync() {
+    const index = currentIndex();
+    upBtn.hidden = index <= 0;
+    downBtn.hidden = index >= sections.length - 1;
+  }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible?.target?.id) setActive(visible.target.id);
-    },
-    { rootMargin: '-35% 0px -45% 0px', threshold: [0.15, 0.35, 0.6] },
-  );
-
-  sections.forEach((section) => observer.observe(section));
+  upBtn.addEventListener('click', () => go(sections[currentIndex() - 1]));
+  downBtn.addEventListener('click', () => go(sections[currentIndex() + 1]));
+  window.addEventListener('scroll', sync, { passive: true });
+  sync();
 }
