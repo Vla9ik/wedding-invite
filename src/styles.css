@@ -202,7 +202,8 @@ h2 {
 }
 
 .section::before,
-.hero::before {
+.hero::before,
+.footer::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1302,16 +1303,36 @@ h2 {
 }
 
 .footer {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
   text-align: center;
-  padding: 3rem 1rem 4rem;
-  background: linear-gradient(#f6d5de, #f3c6d4);
+  padding: 3rem 1rem 6.5rem;
   color: #3f1d28;
+}
+
+.footer.pattern-kosh::before {
+  opacity: 0.1;
+}
+
+.footer-sign {
+  font-size: clamp(1.05rem, 4vw, 1.2rem);
+  margin: 0.15rem 0 0;
 }
 
 .footer-names {
   font-size: clamp(1.7rem, 7vw, 2.2rem);
-  margin: 0.3rem 0 0;
+  margin: 0.25rem 0 0;
   color: #4a1830;
+}
+
+.footer-phone {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #4a1830;
+  text-decoration: none;
+  font-size: clamp(1.08rem, 4.2vw, 1.25rem);
+  letter-spacing: 0.04em;
 }
 
 .tiny {

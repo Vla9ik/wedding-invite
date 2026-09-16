@@ -33,6 +33,12 @@ document.querySelectorAll('[data-bride]').forEach((el) => {
 document.querySelectorAll('[data-parents]').forEach((el) => {
   el.textContent = config.parents;
 });
+document.querySelectorAll('[data-phone]').forEach((el) => {
+  el.textContent = config.phone;
+});
+document.querySelectorAll('[data-phone-href]').forEach((el) => {
+  el.setAttribute('href', config.phoneHref);
+});
 document.querySelectorAll('[data-event]').forEach((el) => {
   el.textContent = config.eventTitle;
 });

@@ -3,6 +3,8 @@
 export const config = {
   bride: 'Нуржан',
   parents: 'Нурказы жана Динара',
+  phone: '+996 775 225 325',
+  phoneHref: 'tel:+996775225325',
   eventTitle: 'Кыз узатуу',
   weddingDate: '2026-10-11',
   weddingTime: '16:00',
