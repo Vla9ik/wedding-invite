@@ -17,9 +17,9 @@ export function readGuest() {
   return {
     name,
     many,
-    greeting: many ? `Урматтуу ${name}` : name,
+    greeting: `Урматтуу ${name}`,
     ask: name,
-    hello: many ? `Урматтуу ${name}` : name,
+    hello: `Урматтуу ${name}`,
   };
 }
 

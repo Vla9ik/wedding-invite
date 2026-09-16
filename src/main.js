@@ -30,6 +30,9 @@ document.title = `${config.eventTitle} — ${config.bride}`;
 document.querySelectorAll('[data-bride]').forEach((el) => {
   el.textContent = config.bride;
 });
+document.querySelectorAll('[data-parents]').forEach((el) => {
+  el.textContent = config.parents;
+});
 document.querySelectorAll('[data-event]').forEach((el) => {
   el.textContent = config.eventTitle;
 });
