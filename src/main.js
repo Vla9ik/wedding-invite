@@ -86,7 +86,7 @@ if (mapFrame) {
         loadMap();
         observer.disconnect();
       },
-      { rootMargin: '240px' },
+      { rootMargin: '40px' },
     );
     observer.observe(mapFrame);
   } else {

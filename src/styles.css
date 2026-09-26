@@ -259,6 +259,16 @@ h2 {
   opacity: 0.1;
 }
 
+@media (max-width: 720px) {
+  .pattern-terme::before {
+    background-size: 360px auto;
+  }
+
+  .pattern-kosh::before {
+    background-size: 420px auto;
+  }
+}
+
 .tint-blush {
   background: #faf0f3;
 }
@@ -1311,7 +1321,7 @@ h2 {
   color: #3f1d28;
 }
 
-.footer.pattern-kosh::before {
+.footer.pattern-shyrdak::before {
   opacity: 0.1;
 }
 

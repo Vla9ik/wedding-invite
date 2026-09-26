@@ -1,6 +1,5 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import confetti from 'canvas-confetti';
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -19,7 +18,8 @@ export function initPetals() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const kinds = ['petal', 'heart', 'star', 'bow', 'flower'];
-  const count = window.matchMedia('(max-width: 720px)').matches ? 8 : 12;
+  const mobile = window.matchMedia('(max-width: 720px)').matches;
+  const count = mobile ? 5 : 12;
   const tweens = [];
 
   for (let i = 0; i < count; i += 1) {
@@ -51,6 +51,21 @@ export function initPetals() {
       else tween.resume();
     });
   });
+
+  if (mobile) {
+    let scrollPause;
+    window.addEventListener(
+      'scroll',
+      () => {
+        tweens.forEach((tween) => tween.pause());
+        window.clearTimeout(scrollPause);
+        scrollPause = window.setTimeout(() => {
+          tweens.forEach((tween) => tween.resume());
+        }, 180);
+      },
+      { passive: true },
+    );
+  }
 }
 
 function splitChars(el) {
@@ -414,20 +429,26 @@ function initVenueScene() {
 const RSVP_COLORS = ['#e8a4b8', '#8b3a52', '#f3c6d4', '#e8c48a', '#fffaf4'];
 
 let party = null;
+let confettiLib = null;
 
-function getParty() {
+async function getParty() {
   if (party) return party;
+
+  if (!confettiLib) {
+    const mod = await import('canvas-confetti');
+    confettiLib = mod.default;
+  }
 
   const canvas = document.createElement('canvas');
   canvas.className = 'rsvp-confetti';
   const host = document.querySelector('.rsvp-toast') || document.body;
   host.prepend(canvas);
-  party = confetti.create(canvas, { resize: true, useWorker: false });
+  party = confettiLib.create(canvas, { resize: true, useWorker: false });
   return party;
 }
 
-function celebrateYes() {
-  const fire = getParty();
+async function celebrateYes() {
+  const fire = await getParty();
   const end = Date.now() + 2400;
 
   fire({
