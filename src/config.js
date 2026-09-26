@@ -10,15 +10,16 @@ export const config = {
   weddingTime: '16:00',
   bridePhoto: '/photos/bride.jpg',
   venue: {
-    title: 'Ресторан «Санжыра»',
-    address: 'проспект Тумонбая Байзакова, 1/22',
+    title: 'Ак-Орго',
+    address: 'улица Бекмамата Осмонова, 82, Манас',
     map: {
-      lat: 40.924506,
-      lon: 73.015169,
+      lat: 40.944822,
+      lon: 72.989005,
       zoom: 18,
       zoomMobile: 18,
-      org: '70000001104293255',
+      org: '70000001084034946',
       city: 'dzhalal-abad',
+      link: 'https://2gis.kg/bishkek/geo/70000001084034946',
     },
   },
   letter: {
@@ -48,6 +49,7 @@ export function buildVenueMapUrl() {
 }
 
 export function venueMapLink() {
+  if (config.venue.map.link) return config.venue.map.link;
   const { lat, lon, org, city } = config.venue.map;
-  return `https://2gis.ru/${city}/firm/${org}/center/${lon},${lat}/zoom/18`;
+  return `https://2gis.kg/${city}/firm/${org}/center/${lon},${lat}/zoom/18`;
 }
