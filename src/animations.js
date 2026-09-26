@@ -19,7 +19,7 @@ export function initPetals() {
 
   const kinds = ['petal', 'heart', 'star', 'bow', 'flower'];
   const mobile = window.matchMedia('(max-width: 720px)').matches;
-  const count = mobile ? 5 : 12;
+  const count = mobile ? 3 : 12;
   const tweens = [];
 
   for (let i = 0; i < count; i += 1) {
@@ -68,8 +68,13 @@ export function initPetals() {
   }
 }
 
+function cheapMotion() {
+  return window.matchMedia('(max-width: 720px)').matches;
+}
+
 function splitChars(el) {
   if (!el) return [];
+  if (cheapMotion()) return [el];
 
   const text = el.textContent.trim();
   el.setAttribute('aria-label', text);
@@ -200,6 +205,7 @@ function initHeroEntrance() {
 
 function splitWords(el) {
   if (!el) return [];
+  if (cheapMotion()) return [el];
 
   const text = el.textContent.trim();
   el.setAttribute('aria-label', text);
@@ -220,6 +226,21 @@ function splitWords(el) {
 
 function reducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function pauseMotionWhileScrolling() {
+  if (!cheapMotion()) return;
+
+  let idle;
+  window.addEventListener(
+    'scroll',
+    () => {
+      gsap.globalTimeline.pause();
+      window.clearTimeout(idle);
+      idle = window.setTimeout(() => gsap.globalTimeline.resume(), 140);
+    },
+    { passive: true },
+  );
 }
 
 function initIntroScene() {
@@ -583,52 +604,69 @@ function initRsvpChoice() {
 
 export function initReveals() {
   initHeroEntrance();
-  initIntroScene();
-  initCalendarScene();
-  initLetterScene();
-  initVenueScene();
-  initRsvpScene();
   initRsvpChoice();
+  pauseMotionWhileScrolling();
 
-  gsap.utils.toArray('.section').forEach((section) => {
-    if (
-      section.id === 'intro' ||
-      section.id === 'letter' ||
-      section.id === 'venue' ||
-      section.id === 'rsvp' ||
-      section.classList.contains('calendar-section')
-    ) {
-      return;
-    }
+  let restStarted = false;
+  const startRest = () => {
+    if (restStarted) return;
+    restStarted = true;
+    initIntroScene();
+    initCalendarScene();
+    initLetterScene();
+    initVenueScene();
+    initRsvpScene();
 
-    gsap.from(section.querySelectorAll('h2, .lead, .kicker, .rsvp-actions, .ornament-hero'), {
-      y: 28,
-      autoAlpha: 0,
-      duration: 0.9,
-      stagger: 0.07,
-      ease: 'power3.out',
-      immediateRender: false,
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 78%',
-        once: true,
-      },
+    gsap.utils.toArray('.section').forEach((section) => {
+      if (
+        section.id === 'intro' ||
+        section.id === 'letter' ||
+        section.id === 'venue' ||
+        section.id === 'rsvp' ||
+        section.classList.contains('calendar-section')
+      ) {
+        return;
+      }
+
+      gsap.from(section.querySelectorAll('h2, .lead, .kicker, .rsvp-actions, .ornament-hero'), {
+        y: 28,
+        autoAlpha: 0,
+        duration: 0.9,
+        stagger: 0.07,
+        ease: 'power3.out',
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 78%',
+          once: true,
+        },
+      });
     });
-  });
+  };
+
+  if (cheapMotion()) {
+    window.addEventListener('scroll', startRest, { once: true, passive: true });
+    document.querySelector('.hero-next')?.addEventListener('click', startRest, { once: true });
+    window.setTimeout(startRest, 2800);
+  } else {
+    startRest();
+  }
 
   document.querySelector('.hero-next')?.addEventListener('click', (event) => {
     event.preventDefault();
     document.querySelector('#intro')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  gsap.to('.heart-stage', {
-    y: 10,
-    duration: 3.4,
-    yoyo: true,
-    repeat: -1,
-    ease: 'sine.inOut',
-    delay: 1.4,
-  });
+  if (!cheapMotion()) {
+    gsap.to('.heart-stage', {
+      y: 10,
+      duration: 3.4,
+      yoyo: true,
+      repeat: -1,
+      ease: 'sine.inOut',
+      delay: 1.4,
+    });
+  }
 }
 
 export function initLetter() {

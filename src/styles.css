@@ -85,8 +85,31 @@ body {
 
 @media (max-width: 720px) {
   .side-rail {
-    width: 42px;
-    opacity: 0.18;
+    display: none;
+  }
+
+  body {
+    background-image: none;
+  }
+
+  .hero-title,
+  .hero-names,
+  .calendar-wrap {
+    perspective: none;
+  }
+
+  .hero-title .word,
+  .hero-names .word,
+  .eyebrow .word {
+    transform-style: flat;
+  }
+
+  .heart-outline {
+    filter: none;
+  }
+
+  .glow-card::after {
+    display: none;
   }
 }
 
@@ -1474,11 +1497,11 @@ h2 {
   .map-frame {
     border-width: 5px;
     border-radius: 18px;
-    min-height: 300px;
+    min-height: 220px;
   }
 
   .map-frame iframe {
-    height: 380px;
+    height: 240px;
   }
 
   .envelope-scene {
@@ -1503,7 +1526,7 @@ h2 {
 
 @media (max-width: 360px) {
   .map-frame iframe {
-    height: 360px;
+    height: 220px;
   }
 
   .rsvp-actions {
